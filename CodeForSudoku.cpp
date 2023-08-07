@@ -55,23 +55,23 @@ bool sudoku(int r,int c, vector<vector<int>> &dp)
 		return sudoku(r+1,0,dp);
 	}	
 
-	if(dp[r][c] == 0)            //if the current cell is empty, try to fill correct numbers in it.
- {
-		for(int i=1; i<=9; i++)
-   {		
-	  	if(isSafe(r,c,i,dp))     //Check whether it is safe to put the current number in the current cell or not.
-		 {
-		  	dp[r][c] = i;        //put the number in the cell
-			 if(sudoku(r,c+1,dp))       
-	       return true;         //if, if() condition becomes true, means sudoku has been solved correctly.Hence return true.
-     }                       // if, if() condition becomes false, means one of the cells can not be filled correctly with any of the numbers from 1 to 9,                           
-  }                             so fill the current cell with other numbers,if it is safe .
-}
+	if(dp[r][c] == 0)    //if the current cell is empty, try to fill correct numbers in it.
+   {
+	 for(int i=1; i<=9; i++)
+      {		
+	  if(isSafe(r,c,i,dp))     //Check whether it is safe to put the current number in the current cell or not.
+	{
+	      dp[r][c] = i;        //put the number in the cell
+	      if(sudoku(r,c+1,dp))       
+	         return true;       //if, if() condition becomes true, means sudoku has been solved correctly.Hence return true.
+        }                          // if, if() condition becomes false, means one of the cells can not be filled correctly with any of the numbers from 1 to 9,                           
+     }                                //so fill the current cell with other numbers,if it is safe .
+  }
 
 	  dp[r][c] = 0;          // otherwise make current cell empty and return false.
 	  if(dp[r][c] == 0)      //Backtrack
-	  	return false;
-	}	
+	    return false;
+}	
     
     return sudoku(r,c+1,dp); // if current cell is already filled ,go to next cell.
 }
